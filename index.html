@@ -22,26 +22,61 @@
     	// alert ("computer = "+ computer + ", player = "+ player);
 
     	if (player === computer) {
-    		return "Tie, try again?";
+    		return "Tie; both had "+player;
     	} else { 
     		switch(player) {
     			case "rock":
-    				retmsg = (computer==="paper"?"You lose! paper beats rock":"You win! Rock beats scissors");
+    				retmsg = (computer==="paper"?"You lose! paper beats rock":"You win! rock beats scissors");
     				break;
     			case "paper":
-    				retmsg = (computer==="rock"?"You win! paper beats rock":"You lose! Scissors beats paper");
+    				retmsg = (computer==="rock"?"You win! paper beats rock":"You lose! scissors beats paper");
     				break;
     			case "scissors":
-    				retmsg = (computer==="paper"?"You win! Scissors beats paper":"You lose! Rock beats scissors");
+    				retmsg = (computer==="paper"?"You win! scissors beats paper":"You lose! rock beats scissors");
     				break;
     		}
     		return retmsg;
     	}
     }
 
-    const playerSelection = "rock";
-    const computerSelection = computerPlay();
-    console.log(playRound(playerSelection,computerSelection));
+    function game() {
+    	let myString;
+    	let playerSelection;
+    	let computerSelection;
+    	let result;
+    	for (i=1;i<=5;i++) {
+    		myString = prompt("Rock, paper, scissors?");
+    		playerSelection = myString.toLowerCase();
+
+    		while (!allowableAnswers.includes(playerSelection) ) {
+    			myString = prompt("Try again: Rock, paper, scissors?");
+    			playerSelection = myString.toLowerCase();
+    		}
+
+    		computerSelection = computerPlay();
+    		// alert("you chose "+playerSelection+", computer chose "+computerSelection);
+    		result = playRound(playerSelection,computerSelection);
+    		console.log("Round "+i+": "+result);
+    		if (result.includes("win")) {
+    			numPlayerWins++;
+    		} else if (result.includes("lose")) {
+    			numComputerWins++;
+    		}
+    	}
+    	
+    	if (numPlayerWins > numComputerWins) { 
+    		console.log( numPlayerWins + " to "+numComputerWins+", you win the match!");
+    	} else if (numPlayerWins < numComputerWins) {
+    		console.log( numPlayerWins + " to "+numComputerWins+", you lost the match :-(");
+    	} else {
+    		console.log("Tied match,"+numPlayerWins+" each");
+    	}
+    }
+
+    const allowableAnswers = ["rock","paper","scissors"];
+    let numPlayerWins = 0;
+    let numComputerWins = 0;
+    game();
 
   </script>
 </body>
