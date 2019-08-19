@@ -10,15 +10,24 @@
 		<h3>First to win 5 rounds wins the match</h3>
 	</header>
 	<main>
+		<div class="rules">
+			<img width="256" alt="Rock-paper-scissors" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/256px-Rock-paper-scissors.svg.png">
+			<!-- "Enzoklop [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Rock-paper-scissors.svg" -->
+		</div>
+			<button id="rock" class="button">
+					<img width="128" alt="Rock-paper-scissors (rock)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rock-paper-scissors_%28rock%29.png/128px-Rock-paper-scissors_%28rock%29.png">
+			</button>
+			<button id="paper" class="button">
+					<img width="128" alt="Rock-paper-scissors (paper)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rock-paper-scissors_%28paper%29.png/128px-Rock-paper-scissors_%28paper%29.png">
+			</button>
+			<button im="scissors" class="button">
+					<img width="128" alt="Rock-paper-scissors (scissors)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Rock-paper-scissors_%28scissors%29.png/128px-Rock-paper-scissors_%28scissors%29.png">
+			</button>
+			<div class="buttons">
 
 
-
+		</div>
 	</main>
-
-
-
-
-
 
   <script>
    
@@ -56,18 +65,13 @@
     }
 
     function game() {
-    	let myString;
     	let playerSelection;
     	let computerSelection;
     	let result;
     	for (i=1;i<=5;i++) {
-    		myString = prompt("Rock, paper, scissors?");
-    		playerSelection = myString.toLowerCase();
+    		// myString = prompt("Rock, paper, scissors?");
+    		// playerSelection = myString.toLowerCase();
 
-    		while (!allowableAnswers.includes(playerSelection) ) {
-    			myString = prompt("Try again: Rock, paper, scissors?");
-    			playerSelection = myString.toLowerCase();
-    		}
 
     		computerSelection = computerPlay();
     		// alert("you chose "+playerSelection+", computer chose "+computerSelection);
@@ -91,8 +95,20 @@
 
     const allowableAnswers = ["rock","paper","scissors"];
     let numPlayerWins = 0;
-    let numComputerWins = 0;
-    game();
+	let numComputerWins = 0;
+	let haveWinner = false;
+
+	const buttons = document.querySelectorAll('button');
+	buttons.forEach((button) => {
+		button.addEventListener('click', (e) => {
+			console.log(button.id);
+			// playround with e.whatever and computer choice
+			let playResult = playRound(button.id,computerPlay());
+			console.log(playResult);
+		});
+	});
+
+    // game();
 
   </script>
 </body>
