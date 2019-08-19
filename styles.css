@@ -1,0 +1,8 @@
+/* Background Photos from  <a href="https://pngtree.com/freebackground/background-color_125687.html">pngtree.com</a> */
+/*  <a href="https://pngtree.com/free-backgrounds">free background photos from pngtree.com</a> */
+html {
+    background-image: url("images/Pngtree-background-color_125687.jpg");
+    background-size: cover;
+    min-height:100%;
+    background-position: center;
+}
