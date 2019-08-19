@@ -14,18 +14,25 @@
 			<img width="256" alt="Rock-paper-scissors" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/256px-Rock-paper-scissors.svg.png">
 			<!-- "Enzoklop [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Rock-paper-scissors.svg" -->
 		</div>
-			<button id="rock" class="button">
-					<img width="128" alt="Rock-paper-scissors (rock)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rock-paper-scissors_%28rock%29.png/128px-Rock-paper-scissors_%28rock%29.png">
-			</button>
-			<button id="paper" class="button">
-					<img width="128" alt="Rock-paper-scissors (paper)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rock-paper-scissors_%28paper%29.png/128px-Rock-paper-scissors_%28paper%29.png">
-			</button>
-			<button im="scissors" class="button">
-					<img width="128" alt="Rock-paper-scissors (scissors)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Rock-paper-scissors_%28scissors%29.png/128px-Rock-paper-scissors_%28scissors%29.png">
-			</button>
-			<div class="buttons">
 
+		<div class="buttons">
+				<button id="rock" class="button">
+						<img width="128" alt="Rock-paper-scissors (rock)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rock-paper-scissors_%28rock%29.png/128px-Rock-paper-scissors_%28rock%29.png">
+				</button>
+				<button id="paper" class="button">
+						<img width="128" alt="Rock-paper-scissors (paper)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rock-paper-scissors_%28paper%29.png/128px-Rock-paper-scissors_%28paper%29.png">
+				</button>
+				<button id="scissors" class="button">
+						<img width="128" alt="Rock-paper-scissors (scissors)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Rock-paper-scissors_%28scissors%29.png/128px-Rock-paper-scissors_%28scissors%29.png">
+				</button>
+		</div>
 
+		<div class="results">
+			<p class="curResult"></p>
+			<h4>Score</h4>
+			<p class="playerScore">You: </p>
+			<p class="computerScore">Computer:</p>
+			<p class="winnerOfMatch"></p>
 		</div>
 	</main>
 
@@ -35,81 +42,83 @@
 
     function computerPlay() {
     	let myRandNum = Math.random();
-    	if (myRandNum < .33) return ("Rock");
-    		else if (myRandNum < .66) return ("Paper");
-    		else return ("Scissors"); 
+    	if (myRandNum < .33) return ("rock");
+    		else if (myRandNum < .66) return ("paper");
+			else return ("scissors"); 
+			// return allowableAnswers[Math.floor(Math.random()*3)];
     }
     
-    function playRound(playerSelection, computerSelection) {
-    	let player = playerSelection.toLowerCase();
-    	let computer = computerSelection.toLowerCase();
+    function playRound(player, computer) {
 
-    	// alert ("computer = "+ computer + ", player = "+ player);
-
+    	console.log ("playRound: computer = "+ computer + ", player = "+ player);
+		let roundResult;
     	if (player === computer) {
-    		return "Tie; both had "+player;
+    		roundResult = "tie";
     	} else { 
     		switch(player) {
     			case "rock":
-    				retmsg = (computer==="paper"?"You lose! paper beats rock":"You win! rock beats scissors");
+					roundResult = (computer==="scissors"?"win":"lose");
     				break;
     			case "paper":
-    				retmsg = (computer==="rock"?"You win! paper beats rock":"You lose! scissors beats paper");
+					roundResult = (computer==="rock"?"win":"lose");
     				break;
     			case "scissors":
-    				retmsg = (computer==="paper"?"You win! scissors beats paper":"You lose! rock beats scissors");
+					roundResult = (computer==="paper"?"win":"lose");
     				break;
-    		}
-    		return retmsg;
+			}
+    		reportResult(roundResult);
     	}
     }
 
-    function game() {
-    	let playerSelection;
-    	let computerSelection;
-    	let result;
-    	for (i=1;i<=5;i++) {
-    		// myString = prompt("Rock, paper, scissors?");
-    		// playerSelection = myString.toLowerCase();
+	function reportResult(roundResult) {
+		console.log(roundResult);
+		switch (roundResult) {
+			case "win": 
+				numPlayerWins++;
+				break;
+			case "lose":
+				numComputerWins++;
+				break;
+			default:
+				break;
+		}
+		console.log("you have "+numPlayerWins+" wins, the computer has "+numComputerWins+" wins");
+				
+		// check to see if either player has reached 5 wins
+    	if (numPlayerWins === 5) { 
+			console.log("you win the match!");
+			haveWinner = true;
+    	} else if (numComputerWins === 5) {
+    		console.log("You lost the match :-(");
+			haveWinner = true;
+    	} 
+		if (haveWinner) {
+			buttons.forEach((button) => {
+				button.disabled = true;
+			});
+		}
+	}
+    function game(playerSelection) {
 
-
-    		computerSelection = computerPlay();
-    		// alert("you chose "+playerSelection+", computer chose "+computerSelection);
-    		result = playRound(playerSelection,computerSelection);
-    		console.log("Round "+i+": "+result);
-    		if (result.includes("win")) {
-    			numPlayerWins++;
-    		} else if (result.includes("lose")) {
-    			numComputerWins++;
-    		}
-    	}
-    	
-    	if (numPlayerWins > numComputerWins) { 
-    		console.log( numPlayerWins + " to "+numComputerWins+", you win the match!");
-    	} else if (numPlayerWins < numComputerWins) {
-    		console.log( numPlayerWins + " to "+numComputerWins+", you lost the match :-(");
-    	} else {
-    		console.log("Tied match,"+numPlayerWins+" each");
-    	}
     }
 
     const allowableAnswers = ["rock","paper","scissors"];
     let numPlayerWins = 0;
 	let numComputerWins = 0;
+	const buttons = document.querySelectorAll('button');
 	let haveWinner = false;
 
-	const buttons = document.querySelectorAll('button');
-	buttons.forEach((button) => {
-		button.addEventListener('click', (e) => {
-			console.log(button.id);
-			// playround with e.whatever and computer choice
-			let playResult = playRound(button.id,computerPlay());
-			console.log(playResult);
+	function main() {
+		// set up event listeners for each button
+		buttons.forEach((button) => {
+			button.addEventListener('click', (e) => {
+				console.log("button.id="+button.id);
+				playRound(button.id, computerPlay());
+			});
 		});
-	});
+	}
 
-    // game();
-
+	main();
   </script>
 </body>
 </html>
