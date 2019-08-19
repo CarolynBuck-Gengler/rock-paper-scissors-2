@@ -6,3 +6,20 @@ html {
     min-height:100%;
     background-position: center;
 }
+
+footer {
+    opacity: 1; 
+    background-color: rgba(255,255,255,0.3); 
+    height: 200px;
+    width: 100%;
+  }
+footer p {
+    margin: 0 0 0 40px; 
+}
+footer h4 {
+    margin: 50px auto 10px 20px;
+    padding-top: 20px;
+}
+.piccredit {
+    margin-left: 60px;
+}
