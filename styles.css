@@ -9,9 +9,51 @@ html {
 h1, h2, h3, h4 {
     font-family: 'Lato', sans-serif;
 }
+h3 {
+    font-style: italic;
+}
 p {
     font-family: 'Roboto', sans-serif;
 }
+
+.rules {
+    margin: 20px 0 0 0;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.flex-container .box {
+    width: 50%;
+    margin: 10px;
+    text-align: center;
+}
+.buttons {
+    text-align: center;
+}
+.button {
+    display: inline-block;
+    margin: 0 20px;
+}
+main h2 {
+    text-align: center;
+    font-style: italic;
+}
+main h4 {
+    margin-left: 30px;
+}
+main p {
+    margin-left: 40px;
+    color: white;
+}
+.choices, .results {
+    visibility: hidden;
+}
+.winnerOfMatch {
+    font-size: 1.2rem;
+}
+
 
 footer {
     opacity: 1; 

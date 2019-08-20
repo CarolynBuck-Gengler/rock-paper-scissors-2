@@ -12,6 +12,8 @@
 
         console.log ("playRound: computer = "+ computer + ", player = "+ player);
         playerChoiceLoc.textContent = "You chose "+ player;
+
+        choicesLoc.style.visibility = "visible";
         computerChoiceLoc.textContent = "Computer chose "+computer;
 
 		let roundResult;
@@ -35,15 +37,18 @@
     }
 
 	function reportResult(roundResult) {
-		console.log(roundResult);
+        console.log(roundResult);
+        resultsLoc.style.visibility = "visible";
+        matchWinner.style.visibility = "hidden";
+
 		switch (roundResult) {
 			case "win": 
                 numPlayerWins++;
-                whoWonLoc.textContent = "you won this round";
+                whoWonLoc.textContent = "==> You won this round";
 				break;
 			case "lose":
 				numComputerWins++;
-                whoWonLoc.textContent = "you lost this round";
+                whoWonLoc.textContent = "==> You lost this round";
 				break;
 			default:
 				break;
@@ -63,6 +68,7 @@
 			haveWinner = true;
     	} 
 		if (haveWinner) {
+            matchWinner.style.visibility = "visible";
 			buttons.forEach((button) => {
 				button.disabled = true; // end the game here.
 			});
@@ -80,6 +86,10 @@
     computerChoiceLoc = document.querySelector(".computerChoice");
     whoWonLoc = document.querySelector(".whoWon");
     matchWinner = document.querySelector(".winnerOfMatch");
+    choicesLoc = document.querySelector(".choices");
+    resultsLoc = document.querySelector(".results");
+
+
 
 	function main() {
 		// set up event listeners for each button

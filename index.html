@@ -6,40 +6,45 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	<header>
-		<h1>Rock Paper Scissors</h1>
-		<h2>Play against the computer!</h2>
-		<h3>First to win 5 rounds wins the match</h3>
-	</header>
-	<main>
-		<div class="rules">
-			<img width="256" alt="Rock-paper-scissors" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/256px-Rock-paper-scissors.svg.png">
+	<header class="flex-container">
+		<div class="box">
+			<h1>Rock Paper Scissors</h1>
+			<h2>Play against the computer!</h2>
+			<h3>First to win 5 rounds wins the match</h3>
+		</div>
+		<div class="box">
+			<img class="rules" width="256" alt="Rock-paper-scissors" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/256px-Rock-paper-scissors.svg.png">
 			<!-- "Enzoklop [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Rock-paper-scissors.svg" -->
 		</div>
-		<div class="choices">
-			<p class="playerChoice"></p>
-			<p class="computerChoice"></p>
-			<p class="whoWon"></p>
-		</div>
-
+	</header>
+	<main>
+		<!-- <div class="rules">
+			<img width="256" alt="Rock-paper-scissors" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Rock-paper-scissors.svg/256px-Rock-paper-scissors.svg.png">
+		</div> -->
+		<h2>Choose!</h2>
 		<div class="buttons">
-				<button id="rock" class="button">
-						<img width="128" alt="Rock-paper-scissors (rock)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rock-paper-scissors_%28rock%29.png/128px-Rock-paper-scissors_%28rock%29.png">
-				</button>
-				<button id="paper" class="button">
-						<img width="128" alt="Rock-paper-scissors (paper)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rock-paper-scissors_%28paper%29.png/128px-Rock-paper-scissors_%28paper%29.png">
-				</button>
-				<button id="scissors" class="button">
-						<img width="128" alt="Rock-paper-scissors (scissors)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Rock-paper-scissors_%28scissors%29.png/128px-Rock-paper-scissors_%28scissors%29.png">
-				</button>
+			<button id="rock" class="button">
+					<img width="128" alt="Rock-paper-scissors (rock)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rock-paper-scissors_%28rock%29.png/128px-Rock-paper-scissors_%28rock%29.png">
+			</button>
+			<button id="paper" class="button">
+					<img width="128" alt="Rock-paper-scissors (paper)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rock-paper-scissors_%28paper%29.png/128px-Rock-paper-scissors_%28paper%29.png">
+			</button>
+			<button id="scissors" class="button">
+					<img width="128" alt="Rock-paper-scissors (scissors)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Rock-paper-scissors_%28scissors%29.png/128px-Rock-paper-scissors_%28scissors%29.png">
+			</button>
 		</div>
-
+		<div class="choices">
+			<p class="playerChoice">You chose</p>
+			<p class="computerChoice">Computer chose</p>
+			<p class="whoWon">x won</p>
+		</div>
+	
+		<hr/>
 		<div class="results">
-			<p class="curResult"> </p>
-			<h4>Score</h4>
-			<p class="playerScore"> </p>
-			<p class="computerScore"> </p>
-			<p class="winnerOfMatch"> </p>
+			<h4 class="score">Score</h4>
+			<p class="playerScore">ps</p>
+			<p class="computerScore">cs</p>
+			<p class="winnerOfMatch">winner</p>
 		</div>
 	</main>
 
