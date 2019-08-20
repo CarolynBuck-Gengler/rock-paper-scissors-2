@@ -69,6 +69,7 @@
     	} 
 		if (haveWinner) {
             matchWinner.style.visibility = "visible";
+            document.querySelector(".choose").textContent = "Game over! Reload to play again!"
 			buttons.forEach((button) => {
 				button.disabled = true; // end the game here.
 			});
